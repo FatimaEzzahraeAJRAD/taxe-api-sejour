@@ -6,11 +6,13 @@
 package com.sir.taxesejourv1.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -24,8 +26,10 @@ public class TauxTaxeSejour implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double pourcentage ;
-    private double penalite;
-    private double majoration;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateDebut;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date  dateFin;
     @OneToOne
     private Categorie categorie;
 
@@ -37,20 +41,20 @@ public class TauxTaxeSejour implements Serializable {
         this.pourcentage = pourcentage;
     }
 
-    public double getPenalite() {
-        return penalite;
+    public Date getDateDebut() {
+        return dateDebut;
     }
 
-    public void setPenalite(double penalite) {
-        this.penalite = penalite;
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
-    public double getMajoration() {
-        return majoration;
+    public Date getDateFin() {
+        return dateFin;
     }
 
-    public void setMajoration(double majoration) {
-        this.majoration = majoration;
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
     }
 
     public Categorie getCategorie() {

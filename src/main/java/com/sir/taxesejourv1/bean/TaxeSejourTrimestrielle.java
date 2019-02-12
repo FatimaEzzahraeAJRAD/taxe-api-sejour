@@ -26,18 +26,37 @@ public class TaxeSejourTrimestrielle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private double chiffreAffaire;
     private int numeroTrimester;
-    private int nomberDeNuit;
-    private Long nomberClient;
-    private double montant;
+    private Long annee;
+    private double montantBase;
+    private double montantMajoration;
+    private double montantPenalite;
+    private double montantTaxe;
      @Temporal(javax.persistence.TemporalType.DATE)
     private Date datePresentation;
      @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateValidation;
-    @Temporal(javax.persistence.TemporalType.DATE)
-     private Date dateQuittance;
+   private int nomberMoisRetard;
+     private String referenceLocal;
     @ManyToOne
     private TaxeSejourAnnuelle taxeSejourAnnuelle;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public double getChiffreAffaire() {
+        return chiffreAffaire;
+    }
+
+    public void setChiffreAffaire(double chiffreAffaire) {
+        this.chiffreAffaire = chiffreAffaire;
+    }
 
     public int getNumeroTrimester() {
         return numeroTrimester;
@@ -47,28 +66,44 @@ public class TaxeSejourTrimestrielle implements Serializable {
         this.numeroTrimester = numeroTrimester;
     }
 
-    public int getNomberDeNuit() {
-        return nomberDeNuit;
+    public Long getAnnee() {
+        return annee;
     }
 
-    public void setNomberDeNuit(int nomberDeNuit) {
-        this.nomberDeNuit = nomberDeNuit;
+    public void setAnnee(Long annee) {
+        this.annee = annee;
     }
 
-    public Long getNomberClient() {
-        return nomberClient;
+    public double getMontantBase() {
+        return montantBase;
     }
 
-    public void setNomberClient(Long nomberClient) {
-        this.nomberClient = nomberClient;
+    public void setMontantBase(double montantBase) {
+        this.montantBase = montantBase;
     }
 
-    public double getMontant() {
-        return montant;
+    public double getMontantMajoration() {
+        return montantMajoration;
     }
 
-    public void setMontant(double montant) {
-        this.montant = montant;
+    public void setMontantMajoration(double montantMajoration) {
+        this.montantMajoration = montantMajoration;
+    }
+
+    public double getMontantPenalite() {
+        return montantPenalite;
+    }
+
+    public void setMontantPenalite(double montantPenalite) {
+        this.montantPenalite = montantPenalite;
+    }
+
+    public double getMontantTaxe() {
+        return montantTaxe;
+    }
+
+    public void setMontantTaxe(double montantTaxe) {
+        this.montantTaxe = montantTaxe;
     }
 
     public Date getDatePresentation() {
@@ -87,12 +122,20 @@ public class TaxeSejourTrimestrielle implements Serializable {
         this.dateValidation = dateValidation;
     }
 
-    public Date getDateQuittance() {
-        return dateQuittance;
+    public int getNomberMoisRetard() {
+        return nomberMoisRetard;
     }
 
-    public void setDateQuittance(Date dateQuittance) {
-        this.dateQuittance = dateQuittance;
+    public void setNomberMoisRetard(int nomberMoisRetard) {
+        this.nomberMoisRetard = nomberMoisRetard;
+    }
+
+    public String getReferenceLocal() {
+        return referenceLocal;
+    }
+
+    public void setReferenceLocal(String referenceLocal) {
+        this.referenceLocal = referenceLocal;
     }
 
     public TaxeSejourAnnuelle getTaxeSejourAnnuelle() {
@@ -101,14 +144,6 @@ public class TaxeSejourTrimestrielle implements Serializable {
 
     public void setTaxeSejourAnnuelle(TaxeSejourAnnuelle taxeSejourAnnuelle) {
         this.taxeSejourAnnuelle = taxeSejourAnnuelle;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
