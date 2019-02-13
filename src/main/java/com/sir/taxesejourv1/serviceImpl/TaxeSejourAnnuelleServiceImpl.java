@@ -5,10 +5,14 @@
  */
 package com.sir.taxesejourv1.serviceImpl;
 
+import com.sir.taxesejourv1.service.TaxeSejourAnnuelleService;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Jawadoo
  */
-public class TaxeSejourAnnuelleServiceImpl {
+@Service
+public class TaxeSejourAnnuelleServiceImpl implements TaxeSejourAnnuelleService {
     
 }

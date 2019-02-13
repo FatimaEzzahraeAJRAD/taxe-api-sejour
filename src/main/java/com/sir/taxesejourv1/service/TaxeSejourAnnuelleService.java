@@ -9,6 +9,6 @@ package com.sir.taxesejourv1.service;
  *
  * @author Jawadoo
  */
-public class TaxeSejourAnnuelleService {
+public interface TaxeSejourAnnuelleService {
     
 }

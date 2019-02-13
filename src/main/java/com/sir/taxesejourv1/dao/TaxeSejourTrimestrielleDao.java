@@ -5,10 +5,15 @@
  */
 package com.sir.taxesejourv1.dao;
 
+import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author Jawadoo
  */
-public class TaxeSejourTrimestrielleDao {
+@Repository
+public interface TaxeSejourTrimestrielleDao extends JpaRepository<TaxeSejourTrimestrielle, Long>{
     
 }

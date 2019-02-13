@@ -5,10 +5,37 @@
  */
 package com.sir.taxesejourv1.rest;
 
+import com.sir.taxesejourv1.rest.proxy.LocalProxy;
+import com.sir.taxesejourv1.rest.vo.LocalVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  *
  * @author Jawadoo
  */
+@RestController()
+@RequestMapping({"/taxe-sejour-v1/taxeSejours"})
 public class TaxeSejourTrimestrielleRest {
-    
+    @Autowired
+    private LocalProxy localProxy;
+
+    public LocalProxy getLocalProxy() {
+        return localProxy;
+    }
+
+    public void setLocalProxy(LocalProxy localProxy) {
+        this.localProxy = localProxy;
+    }
+    @GetMapping("/referenceLocal/{referenceLocal}")
+    public LocalVo findLocalByReferenceLocal(@PathVariable String referenceLocal){
+        return localProxy.findByReferenceLocal(referenceLocal);
+    }
+    @GetMapping("/refCategorie/{refCategorie}")
+    public LocalVo findLocalByRefCategorie(@PathVariable String refCategorie){
+        return localProxy.findByRefCategorie(refCategorie);
+    }
 }

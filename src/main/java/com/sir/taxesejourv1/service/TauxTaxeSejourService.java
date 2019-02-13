@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Jawadoo
  */
-@Service
+
 public interface TauxTaxeSejourService {
-        public TauxTaxeSejour findByCategorie(Categorie categorie);
+        public TauxTaxeSejour findByRefCategorie(String refCategorie);
 }

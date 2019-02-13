@@ -10,11 +10,13 @@ import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import com.sir.taxesejourv1.dao.TauxTaxeSejourDao;
 import com.sir.taxesejourv1.service.TauxTaxeSejourService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Jawadoo
  */
+@Service
 public class TauxTaxeSejourServiceImpl implements TauxTaxeSejourService {
 
     @Autowired
@@ -27,9 +29,11 @@ public class TauxTaxeSejourServiceImpl implements TauxTaxeSejourService {
     public void setTauxTaxeSejourDao(TauxTaxeSejourDao tauxTaxeSejourDao) {
         this.tauxTaxeSejourDao = tauxTaxeSejourDao;
     }
-    
+
     @Override
-    public TauxTaxeSejour findByCategorie(Categorie categorie) {
-    return tauxTaxeSejourDao.findByCategorie(categorie);
+    public TauxTaxeSejour findByRefCategorie(String refCategorie) {
+        return tauxTaxeSejourDao.findByRefCategorie(refCategorie);
     }
+    
+   
 }
