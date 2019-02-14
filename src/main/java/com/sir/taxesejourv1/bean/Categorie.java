@@ -18,31 +18,14 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Categorie implements Serializable {
-    @OneToOne(mappedBy = "categorie")
-    private TauxTaxeSejour tauxTaxeSejour;
+    
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String libelle;
-    private String refrenceLocal;
-    public TauxTaxeSejour getTauxTaxeSejour() {
-        return tauxTaxeSejour;
-    }
-
-    public void setTauxTaxeSejour(TauxTaxeSejour tauxTaxeSejour) {
-        this.tauxTaxeSejour = tauxTaxeSejour;
-    }
-
-    public String getRefrenceLocal() {
-        return refrenceLocal;
-    }
-
-    public void setRefrenceLocal(String refrenceLocal) {
-        this.refrenceLocal = refrenceLocal;
-    }
-
+    
     public String getLibelle() {
         return libelle;
     }
