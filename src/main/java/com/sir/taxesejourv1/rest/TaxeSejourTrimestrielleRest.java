@@ -6,7 +6,7 @@
 package com.sir.taxesejourv1.rest;
 
 import com.sir.taxesejourv1.rest.proxy.LocalProxy;
-import com.sir.taxesejourv1.rest.vo.LocalVo;
+import com.sir.taxesejourv1.rest.exchage.vo.LocalVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

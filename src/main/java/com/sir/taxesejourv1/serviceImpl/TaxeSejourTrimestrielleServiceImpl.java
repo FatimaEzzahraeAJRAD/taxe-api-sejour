@@ -9,7 +9,7 @@ import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
 import com.sir.taxesejourv1.dao.TaxeSejourTrimestrielleDao;
 import com.sir.taxesejourv1.rest.proxy.LocalProxy;
-import com.sir.taxesejourv1.rest.vo.LocalVo;
+import com.sir.taxesejourv1.rest.exchage.vo.LocalVo;
 import com.sir.taxesejourv1.service.TauxTaxeSejourService;
 import com.sir.taxesejourv1.service.TaxeSejourTrimestrielleService;
 import org.springframework.beans.factory.annotation.Autowired;

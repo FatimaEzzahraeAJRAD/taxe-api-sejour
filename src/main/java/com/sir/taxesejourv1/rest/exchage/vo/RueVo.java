@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sir.taxesejourv1.rest.vo;
+package com.sir.taxesejourv1.rest.exchage.vo;
 
 import com.sir.taxesejourv1.bean.*;
 import java.io.Serializable;
@@ -19,15 +19,19 @@ import javax.persistence.OneToMany;
  *
  * @author user
  */
-public class QuartierVo implements Serializable {
-   
+public class RueVo implements Serializable {
+
+    
+
+
     private static final long serialVersionUID = 1L;
     private String reference;
     @ManyToOne
-    private SecteurVo secteur;
-    @OneToMany(mappedBy = "quartier")
-    private List<RueVo> rues;
+    private QuartierVo quartierVo;
+    @OneToMany(mappedBy = "rue")
+    private List<LocalVo> localsVo;
 
+ 
     public String getReference() {
         return reference;
     }
@@ -36,21 +40,23 @@ public class QuartierVo implements Serializable {
         this.reference = reference;
     }
 
-    public SecteurVo getSecteur() {
-        return secteur;
+    public QuartierVo getQuartierVo() {
+        return quartierVo;
     }
 
-    public void setSecteur(SecteurVo secteur) {
-        this.secteur = secteur;
+    public void setQuartierVo(QuartierVo quartierVo) {
+        this.quartierVo = quartierVo;
     }
 
-    public List<RueVo> getRues() {
-        return rues;
+    public List<LocalVo> getLocalsVo() {
+        return localsVo;
     }
 
-    public void setRues(List<RueVo> rues) {
-        this.rues = rues;
+    public void setLocalsVo(List<LocalVo> localsVo) {
+        this.localsVo = localsVo;
     }
 
+    
 
+   
 }

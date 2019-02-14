@@ -5,7 +5,7 @@
  */
 package com.sir.taxesejourv1.rest.proxy;
 
-import com.sir.taxesejourv1.rest.vo.LocalVo;
+import com.sir.taxesejourv1.rest.exchage.vo.LocalVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

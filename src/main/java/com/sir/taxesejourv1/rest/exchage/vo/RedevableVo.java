@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sir.taxesejourv1.rest.vo;
+package com.sir.taxesejourv1.rest.exchage.vo;
 
 import com.sir.taxesejourv1.bean.*;
 import java.io.Serializable;
