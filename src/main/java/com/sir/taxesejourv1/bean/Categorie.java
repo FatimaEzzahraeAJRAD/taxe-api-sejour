@@ -18,14 +18,13 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Categorie implements Serializable {
-    
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String libelle;
-    
+
     public String getLibelle() {
         return libelle;
     }

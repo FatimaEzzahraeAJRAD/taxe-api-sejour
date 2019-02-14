@@ -26,13 +26,22 @@ public class TauxTaxeSejour implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double pourcentage ;
+    private String referenceLocal;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDebut;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date  dateFin;
-   private String referenceLocal;
+   private String referenceLocale;
     @OneToOne
     private Categorie categorie;
+
+    public String getReferenceLocale() {
+        return referenceLocale;
+    }
+
+    public void setReferenceLocale(String referenceLocale) {
+        this.referenceLocale = referenceLocale;
+    }
 
     public String getReferenceLocal() {
         return referenceLocal;
@@ -41,6 +50,8 @@ public class TauxTaxeSejour implements Serializable {
     public void setReferenceLocal(String referenceLocal) {
         this.referenceLocal = referenceLocal;
     }
+
+  
 
     public double getPourcentage() {
         return pourcentage;
