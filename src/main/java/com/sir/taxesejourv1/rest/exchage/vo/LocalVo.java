@@ -31,7 +31,7 @@ public class LocalVo implements Serializable {
     private String dernierMontantPaye;
     private String dernierTrimestrePaye ;
     private String dernierAnneePaye ;
-    private String refCategorie;
+    private String lebelle;
 
     public String getChiffreAffaire() {
         return chiffreAffaire;
@@ -98,13 +98,14 @@ public class LocalVo implements Serializable {
         this.dernierAnneePaye = dernierAnneePaye;
     }
 
-    public String getRefCategorie() {
-        return refCategorie;
+    public String getLebelle() {
+        return lebelle;
     }
 
-    public void setRefCategorie(String refCategorie) {
-        this.refCategorie = refCategorie;
+    public void setLebelle(String lebelle) {
+        this.lebelle = lebelle;
     }
 
+   
     
 }

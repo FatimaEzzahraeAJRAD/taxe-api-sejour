@@ -6,8 +6,12 @@
 package com.sir.taxesejourv1.serviceImpl;
 
 import com.sir.taxesejourv1.bean.Categorie;
+import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import com.sir.taxesejourv1.dao.CategorieDao;
+import com.sir.taxesejourv1.dao.TauxTaxeSejourDao;
+import com.sir.taxesejourv1.rest.proxy.LocalProxy;
 import com.sir.taxesejourv1.service.CategorieService;
+import com.sir.taxesejourv1.service.TauxTaxeSejourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,24 +23,77 @@ import org.springframework.stereotype.Service;
 public class CategorieServiceImpl implements CategorieService{
 
     @Autowired
-    CategorieDao categoriedao;
+   private  CategorieDao categoriedao;
+    @Autowired
+    private TauxTaxeSejourDao tauxTaxeSejourDao;
+    @Autowired
+    private TauxTaxeSejourService tauxTaxeSejourService;
+    @Autowired
+    private LocalProxy localProxy;
     
-    @Override
-    public Categorie findByReference(String reference) {
-        return categoriedao.findByReference(reference);
-    }
-
-    @Override
-    public int creer(Categorie categorie) {
-        Categorie c= findByReference(categorie.getRefrenceLocal());
-        if(c!=null){
-            return -1;
-        }else{
+    
+    
+     @Override
+    public Categorie saveCategorieWithTauxTaxeSejour(Categorie categorie) {     // la creation d'une categorie avec 
+                                                                                  //le taux associe a elle
+           if (validateLocal(categorie.getTauxTaxeSejour())) {  
             categoriedao.save(categorie);
-            return 1;
+            tauxTaxeSejourService.saveTauxTaxeSejour(categorie, categorie.getTauxTaxeSejour());
+            return categorie;
+        } else {
+            return null;
         }
     }
+    
 
+    
+    private boolean validateLocal(TauxTaxeSejour tauxTaxeSejour) {     //pour valiser un local
+        if (tauxTaxeSejour == null) {
+            return false;
+        } else if (localProxy.findByReferenceLocal(tauxTaxeSejour.getReferenceLocal()) != null) {
+                  return true;
+                }
+        else{
+            return false;
+        }
+    }   
+
+
+    public LocalProxy getLocalProxy() {
+        return localProxy;
+    }
+    
+    public TauxTaxeSejourService getTauxTaxeSejourService() {
+        return tauxTaxeSejourService;
+    }
+
+//    @Override
+//    public int creer(Categorie categorie) {
+//        if(categorie==null){
+//            return -1;
+//        }
+//        else{
+//            categoriedao.save(categorie);
+//            return 1;
+//        }
+//    }
+    public void setTauxTaxeSejourService(TauxTaxeSejourService tauxTaxeSejourService) {    
+        this.tauxTaxeSejourService = tauxTaxeSejourService;
+    }
+
+    public void setLocalProxy(LocalProxy localProxy) {
+        this.localProxy = localProxy;
+    }
+
+    public TauxTaxeSejourDao getTauxTaxeSejourDao() {
+        return tauxTaxeSejourDao;
+    }
+
+    public void setTauxTaxeSejourDao(TauxTaxeSejourDao tauxTaxeSejourDao) {
+        this.tauxTaxeSejourDao = tauxTaxeSejourDao;
+    }
+
+    
     public CategorieDao getCategoriedao() {
         return categoriedao;
     }

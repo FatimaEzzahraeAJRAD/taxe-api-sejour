@@ -31,9 +31,24 @@ public class TauxTaxeSejourServiceImpl implements TauxTaxeSejourService {
     }
 
     @Override
-    public TauxTaxeSejour findByRefCategorie(String refCategorie) {
-        return tauxTaxeSejourDao.findByRefCategorie(refCategorie);
+    public TauxTaxeSejour findByCategorieLibelle(String libelle) {
+        return  tauxTaxeSejourDao.findByCategorieLibelle(libelle);
     }
+
+    @Override
+    public int saveTauxTaxeSejour(Categorie categorie, TauxTaxeSejour tauxTaxeSejour) {
+        if(tauxTaxeSejour==null ){
+            return -1;
+        }else{
+                tauxTaxeSejour.setCategorie(categorie);
+                tauxTaxeSejourDao.save(tauxTaxeSejour);
+            return 1;
+        }
+    }
+
+    
+
+    
     
    
 }

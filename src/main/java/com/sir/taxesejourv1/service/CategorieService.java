@@ -6,12 +6,14 @@
 package com.sir.taxesejourv1.service;
 
 import com.sir.taxesejourv1.bean.Categorie;
+import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 
 /**
  *
  * @author user
  */
 public  interface CategorieService {
-        public Categorie findByReference(String reference);
-        public int creer(Categorie categorie);
+    // public int creer(Categorie categorie);
+     public Categorie saveCategorieWithTauxTaxeSejour(Categorie categorie);
+        
 }

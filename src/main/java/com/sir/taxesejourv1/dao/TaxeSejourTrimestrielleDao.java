@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TaxeSejourTrimestrielleDao extends JpaRepository<TaxeSejourTrimestrielle, Long>{
-    
+     public TaxeSejourTrimestrielle findTaxeTrimestrielleByNumeroTrimesterAndAnnee(int numeroTrimester,int annee);
 }

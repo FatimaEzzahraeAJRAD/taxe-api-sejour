@@ -5,8 +5,8 @@
  */
 package com.sir.taxesejourv1.rest.converter;
 
-import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
-import com.sir.taxesejourv1.rest.vo.TaxeSejourTrimestrielleVo;
+import com.sir.taxesejourv1.bean.TaxeSejourAnnuelle;
+import com.sir.taxesejourv1.rest.vo.TaxeSejourAnnuelleVo;
 import com.sir.taxesejourv1.util.NumberUtil;
 import java.util.Date;
 import org.springframework.stereotype.Component;
@@ -16,49 +16,45 @@ import org.springframework.stereotype.Component;
  * @author Jawadoo
  */
 @Component
-public class TaxeSejourTrimestrielleConverter extends AbstractConverter<TaxeSejourTrimestrielle, TaxeSejourTrimestrielleVo>{
-    
+public class TaxeSejourAnnuelleConverter extends AbstractConverter<TaxeSejourAnnuelle, TaxeSejourAnnuelleVo>{
     @Override
-    public TaxeSejourTrimestrielle toItem(TaxeSejourTrimestrielleVo vo) {
+    public TaxeSejourAnnuelle toItem(TaxeSejourAnnuelleVo vo) {
         if (vo == null) {
             return null;
         } else {
-            TaxeSejourTrimestrielle item = new TaxeSejourTrimestrielle();
+            TaxeSejourAnnuelle item = new TaxeSejourAnnuelle();
             item.setId(vo.getId());
-            item.setAnnee(NumberUtil.toIneger(vo.getAnnee()));
+            item.setAnnee(new Long(vo.getAnnee()));
             item.setChiffreAffaire(NumberUtil.toDouble(vo.getChiffreAffaire()));
             item.setDatePresentation(new Date(vo.getDatePresentation()));
             item.setMontantBase(NumberUtil.toDouble(vo.getMontantBase()));
-            item.setMontantMajoration( NumberUtil.toDouble(vo.getMontantMajoration()));
+            item.setMontantMajoration(NumberUtil.toDouble(vo.getMontantMajoration()));
             item.setMontantPenalite(NumberUtil.toDouble(vo.getMontantMajoration()));
-            item.setMontantTaxe(NumberUtil.toDouble(vo.getMontantTaxe()));
-            item.setNomberMoisRetard(NumberUtil.toIneger(vo.getNomberMoisRetard()));
+            item.setNomberMoisRetard( NumberUtil.toIneger(vo.getNomberMoisRetard()));
             item.setNumeroTrimester(NumberUtil.toIneger(vo.getNumeroTrimester()));
-            item.setReferenceLocal(vo.getReferenceLocal());
+            item.setMontantTaxe(NumberUtil.toDouble(vo.getMontantTaxe()));
+            item.setTaxeSejourTrimestrielles(new TaxeSejourTrimestrielleConverter().toItem(vo.getTaxeSejourTrimestriellesVo()));
             return item;
         }
     }
-
     @Override
-    public TaxeSejourTrimestrielleVo toVo(TaxeSejourTrimestrielle item) {
+    public TaxeSejourAnnuelleVo toVo(TaxeSejourAnnuelle item) {
         if (item == null) {
             return null;
         } else {
-            TaxeSejourTrimestrielleVo vo = new TaxeSejourTrimestrielleVo();
-            vo.setId(vo.getId());
-            vo.setAnnee(NumberUtil.toStringInt(item.getAnnee()));
+            TaxeSejourAnnuelleVo vo = new TaxeSejourAnnuelleVo();
+            vo.setId(item.getId());
+            vo.setAnnee(NumberUtil.toStringLong(item.getAnnee()));
             vo.setChiffreAffaire(NumberUtil.toStringDouble(item.getChiffreAffaire()));
-           // vo.setDatePresentation(NumberUtil.toString(item.getDatePresentation()));
+            //vo.setDatePresentation(NumberUtil.toString(item.getDatePresentation()));
             vo.setMontantBase(NumberUtil.toStringDouble(item.getMontantBase()));
             vo.setMontantMajoration(NumberUtil.toStringDouble(item.getMontantMajoration()));
             vo.setMontantPenalite(NumberUtil.toStringDouble(item.getMontantMajoration()));
             vo.setMontantTaxe(NumberUtil.toStringDouble(item.getMontantTaxe()));
-            vo.setNomberMoisRetard(NumberUtil.toStringLong(item.getNomberMoisRetard()));
+            vo.setNomberMoisRetard(NumberUtil.toStringInt(item.getNomberMoisRetard()));
             vo.setNumeroTrimester(NumberUtil.toStringInt(item.getNumeroTrimester()));
-            vo.setReferenceLocal(item.getReferenceLocal());
-            vo.setTaxeSejourAnnuelleVO(new TaxeSejourAnnuelleConverter().toVo(item.getTaxeSejourAnnuelle()));
+            vo.setTaxeSejourTrimestriellesVo(new TaxeSejourTrimestrielleConverter().toVo(item.getTaxeSejourTrimestrielles()));
             return vo;
         }
     }
-    }
-
+}

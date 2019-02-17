@@ -15,6 +15,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CategorieDao extends JpaRepository<Categorie, Long>{
-    public Categorie findByReference(String reference);
 
 }

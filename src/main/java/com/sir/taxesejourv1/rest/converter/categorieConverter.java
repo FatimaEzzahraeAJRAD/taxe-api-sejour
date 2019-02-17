@@ -6,6 +6,7 @@
 package com.sir.taxesejourv1.rest.converter;
 
 import com.sir.taxesejourv1.bean.Categorie;
+import com.sir.taxesejourv1.rest.vo.CategorieVo;
 import org.springframework.stereotype.Component;
 
 /**

@@ -11,10 +11,19 @@ package com.sir.taxesejourv1.rest.vo;
  */
 public class TauxTaxeSejourVo {
     private Long id;
-    private double pourcentage ;
+    private String pourcentage ;
     private String dateDebut;
     private String  dateFin;
+    private String referenceLocal;
     private CategorieVo categorieVo;
+
+    public String getReferenceLocal() {
+        return referenceLocal;
+    }
+
+    public void setReferenceLocal(String referenceLocal) {
+        this.referenceLocal = referenceLocal;
+    }
 
     public Long getId() {
         return id;
@@ -24,13 +33,15 @@ public class TauxTaxeSejourVo {
         this.id = id;
     }
 
-    public double getPourcentage() {
+    public String getPourcentage() {
         return pourcentage;
     }
 
-    public void setPourcentage(double pourcentage) {
+    public void setPourcentage(String pourcentage) {
         this.pourcentage = pourcentage;
     }
+
+   
 
     public String getDateDebut() {
         return dateDebut;

@@ -5,8 +5,10 @@
  */
 package com.sir.taxesejourv1.rest.converter;
 
-import com.sir.taxesejourv1.bean.Categorie;
 import com.sir.taxesejourv1.bean.TauxTaxeSejour;
+import com.sir.taxesejourv1.rest.vo.TauxTaxeSejourVo;
+import com.sir.taxesejourv1.util.NumberUtil;
+import java.util.Date;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,11 +25,10 @@ public class TauxTaxeSejourConverter extends AbstractConverter<TauxTaxeSejour, T
         } else {
             TauxTaxeSejour item = new TauxTaxeSejour();
             item.setId(vo.getId());
-            item.setPourcentage(vo.getPourcentage());
-            item.setDateDebut(vo.getDateDebut());
-            item.setDateFin(vo.getDateFin());
+            item.setPourcentage(NumberUtil.toDouble(vo.getPourcentage()));
+            item.setDateDebut(new Date (vo.getDateDebut()));
+            item.setDateFin(new Date(vo.getDateFin()));
             item.setReferenceLocal(vo.getReferenceLocal());
-            item.setCategorie(new categorieConverter().toItem(vo.getCategorie()));
             return item;
         }
     }
@@ -38,12 +39,11 @@ public class TauxTaxeSejourConverter extends AbstractConverter<TauxTaxeSejour, T
         } else {
             TauxTaxeSejourVo vo = new TauxTaxeSejourVo();
             vo.setId(item.getId());
-            vo.setPourcentage(item.getPourcentage());
-            vo.setDateDebut(item.getDateDebut());
-            vo.setDateFin(item.getDateFin());
+            vo.setPourcentage(NumberUtil.toStringDouble(item.getPourcentage()));
+//            vo.setDateDebut(NumberUtil.toString(item.getDateDebut()));
+//            vo.setDateFin(NumberUtil.toString(item.getDateFin()));
             vo.setReferenceLocal(item.getReferenceLocal());
-            vo.setCategorie(new categorieConverter().toVo(item.getCategorie()));
-            return item;
+            return vo;
         }
     }
 }

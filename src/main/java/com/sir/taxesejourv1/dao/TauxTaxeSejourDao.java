@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TauxTaxeSejourDao extends JpaRepository<TauxTaxeSejour,Long>{
-    public TauxTaxeSejour findByRefCategorie(String  refCategorie);
+    public TauxTaxeSejour findByCategorieLibelle(String libelle);
 }

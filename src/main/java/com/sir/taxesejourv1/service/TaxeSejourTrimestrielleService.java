@@ -5,14 +5,14 @@
  */
 package com.sir.taxesejourv1.service;
 
-import com.sir.taxesejourv1.bean.Categorie;
-import org.springframework.stereotype.Service;
+import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
 
 /**
  *
  * @author Jawadoo
  */
 public interface TaxeSejourTrimestrielleService {
-    public int saveTaxe(Long annee, String referenceLocal);
-    
+//    public int saveTaxe(Long annee, String referenceLocal);
+     public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal);
+     public TaxeSejourTrimestrielle findTaxeTrimestrielleByNumeroTrimesterAndAnnee(int numeroTrimestre,int annee);
 }

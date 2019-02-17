@@ -5,11 +5,14 @@
  */
 package com.sir.taxesejourv1.rest;
 
+import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
 import com.sir.taxesejourv1.rest.proxy.LocalProxy;
-import com.sir.taxesejourv1.rest.exchage.vo.LocalVo;
+import com.sir.taxesejourv1.service.TaxeSejourTrimestrielleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TaxeSejourTrimestrielleRest {
     @Autowired
     private LocalProxy localProxy;
+    @Autowired
+    private TaxeSejourTrimestrielleService taxeSejourTrimestrielleService;
 
     public LocalProxy getLocalProxy() {
         return localProxy;
@@ -30,12 +35,22 @@ public class TaxeSejourTrimestrielleRest {
     public void setLocalProxy(LocalProxy localProxy) {
         this.localProxy = localProxy;
     }
-    @GetMapping("/referenceLocal/{referenceLocal}")
-    public LocalVo findLocalByReferenceLocal(@PathVariable String referenceLocal){
-        return localProxy.findByReferenceLocal(referenceLocal);
+    
+     @GetMapping("/numeroTrimester,annee/{numeroTrimester,annee}")
+     public TaxeSejourTrimestrielle findTaxeTrimestrielleByNumeroTrimesterAndAnnee(@PathVariable int numeroTrimestre,@PathVariable int annee) {
+        return taxeSejourTrimestrielleService.findTaxeTrimestrielleByNumeroTrimesterAndAnnee(numeroTrimestre, annee);
     }
-    @GetMapping("/refCategorie/{refCategorie}")
-    public LocalVo findLocalByRefCategorie(@PathVariable String refCategorie){
-        return localProxy.findByRefCategorie(refCategorie);
+   @PostMapping("/")
+    public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal) {
+        return taxeSejourTrimestrielleService.creertaxe(taxesejourTrimestrielle, referenceLocal);
     }
+      
+ 
+    public TaxeSejourTrimestrielleService getTaxeSejourTrimestrielleService() {
+        return taxeSejourTrimestrielleService;
+    }
+    public void setTaxeSejourTrimestrielleService(TaxeSejourTrimestrielleService taxeSejourTrimestrielleService) {
+        this.taxeSejourTrimestrielleService = taxeSejourTrimestrielleService;
+    }
+    
 }

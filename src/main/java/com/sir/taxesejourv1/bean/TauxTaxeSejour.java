@@ -31,17 +31,19 @@ public class TauxTaxeSejour implements Serializable {
     private Date dateDebut;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date  dateFin;
-   private String referenceLocale;
+    
     @OneToOne
     private Categorie categorie;
 
-    public String getReferenceLocale() {
-        return referenceLocale;
+    public Categorie getCategorie() {
+        return categorie;
     }
 
-    public void setReferenceLocale(String referenceLocale) {
-        this.referenceLocale = referenceLocale;
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
+
+    
 
     public String getReferenceLocal() {
         return referenceLocal;
@@ -77,15 +79,6 @@ public class TauxTaxeSejour implements Serializable {
         this.dateFin = dateFin;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
-    }
-
-    
     
     public Long getId() {
         return id;

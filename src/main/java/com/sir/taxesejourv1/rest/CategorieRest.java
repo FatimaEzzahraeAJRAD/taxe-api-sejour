@@ -20,18 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @author user
  */
 @RestController
-@RequestMapping({"/adresse-api/categorie"})
+@RequestMapping({"/taxe-sejour-v1/categorie"})
 public class CategorieRest {
     @Autowired
     CategorieService categorieService;
 
-    @GetMapping("/reference/{reference}")
-    public Categorie findByReference(@PathVariable String reference) {
-        return categorieService.findByReference(reference);
-    }
-    @PostMapping("/")
-    public int creer(@RequestBody Categorie categorie) {
-        return categorieService.creer(categorie);
+     @PostMapping("/")
+    public Categorie saveCategorieWithTauxTaxeSejour(Categorie categorie) {
+        return categorieService.saveCategorieWithTauxTaxeSejour(categorie);
     }
 
     public CategorieService getCategorieService() {
@@ -41,7 +37,5 @@ public class CategorieRest {
     public void setCategorieService(CategorieService categorieService) {
         this.categorieService = categorieService;
     }
-
-  
     
 }

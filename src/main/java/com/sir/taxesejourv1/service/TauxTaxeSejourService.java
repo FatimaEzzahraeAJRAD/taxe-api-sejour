@@ -15,5 +15,6 @@ import org.springframework.stereotype.Service;
  */
 
 public interface TauxTaxeSejourService {
-        public TauxTaxeSejour findByRefCategorie(String refCategorie);
+    public TauxTaxeSejour findByCategorieLibelle(String libelle);
+    public int saveTauxTaxeSejour(Categorie categorie, TauxTaxeSejour tauxTaxeSejour);
 }
