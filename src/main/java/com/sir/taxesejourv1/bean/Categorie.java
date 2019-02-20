@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,16 +23,7 @@ public class Categorie implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String libelle;
-    @OneToOne
-    private TauxTaxeSejour tauxTaxeSejour;
-
-    public TauxTaxeSejour getTauxTaxeSejour() {
-        return tauxTaxeSejour;
-    }
-
-    public void setTauxTaxeSejour(TauxTaxeSejour tauxTaxeSejour) {
-        this.tauxTaxeSejour = tauxTaxeSejour;
-    }
+   
     
 
     public String getLibelle() {

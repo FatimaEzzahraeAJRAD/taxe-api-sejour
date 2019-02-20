@@ -40,10 +40,10 @@ public class TaxeSejourTrimestrielleRest {
      public TaxeSejourTrimestrielle findTaxeTrimestrielleByNumeroTrimesterAndAnnee(@PathVariable int numeroTrimestre,@PathVariable int annee) {
         return taxeSejourTrimestrielleService.findTaxeTrimestrielleByNumeroTrimesterAndAnnee(numeroTrimestre, annee);
     }
-   @PostMapping("/")
-    public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal) {
-        return taxeSejourTrimestrielleService.creertaxe(taxesejourTrimestrielle, referenceLocal);
-    }
+//   @PostMapping("/")
+//    public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal) {
+//        return taxeSejourTrimestrielleService.creertaxe(taxesejourTrimestrielle, referenceLocal);
+//    }
       
  
     public TaxeSejourTrimestrielleService getTaxeSejourTrimestrielleService() {

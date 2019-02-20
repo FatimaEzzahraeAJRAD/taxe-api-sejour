@@ -21,7 +21,23 @@ public class TauxTaxeSejourServiceImpl implements TauxTaxeSejourService {
 
     @Autowired
     private TauxTaxeSejourDao tauxTaxeSejourDao;
+    
+     @Override
+    public TauxTaxeSejour findByCategorieLibelle(String libelle) {
+        return  tauxTaxeSejourDao.findByCategorieLibelle(libelle);
+    }
 
+    @Override
+    public int saveTauxTaxeSejour(TauxTaxeSejour tauxTaxeSejour) {
+        if(tauxTaxeSejour==null ){
+            return -1;
+        }else{
+                tauxTaxeSejourDao.save(tauxTaxeSejour);
+            return 1;
+        }
+    }
+    
+    
     public TauxTaxeSejourDao getTauxTaxeSejourDao() {
         return tauxTaxeSejourDao;
     }
@@ -30,20 +46,7 @@ public class TauxTaxeSejourServiceImpl implements TauxTaxeSejourService {
         this.tauxTaxeSejourDao = tauxTaxeSejourDao;
     }
 
-    @Override
-    public TauxTaxeSejour findByCategorieLibelle(String libelle) {
-        return  tauxTaxeSejourDao.findByCategorieLibelle(libelle);
-    }
-
-    @Override
-    public int saveTauxTaxeSejour(Categorie categorie, TauxTaxeSejour tauxTaxeSejour) {
-        if(tauxTaxeSejour==null ){
-            return -1;
-        }else{
-                tauxTaxeSejour.setCategorie(categorie);
-                tauxTaxeSejourDao.save(tauxTaxeSejour);
-            return 1;
-        }
+   
     }
 
     
@@ -51,4 +54,4 @@ public class TauxTaxeSejourServiceImpl implements TauxTaxeSejourService {
     
     
    
-}
+

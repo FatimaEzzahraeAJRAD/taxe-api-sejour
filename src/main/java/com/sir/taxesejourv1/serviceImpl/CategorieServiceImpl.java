@@ -20,64 +20,28 @@ import org.springframework.stereotype.Service;
  * @author user
  */
 @Service
-public class CategorieServiceImpl implements CategorieService{
+public class CategorieServiceImpl implements CategorieService {
 
     @Autowired
-   private  CategorieDao categoriedao;
+    private CategorieDao categoriedao;
     @Autowired
     private TauxTaxeSejourDao tauxTaxeSejourDao;
     @Autowired
     private TauxTaxeSejourService tauxTaxeSejourService;
     @Autowired
     private LocalProxy localProxy;
-    
-    
-    
-     @Override
-    public Categorie saveCategorieWithTauxTaxeSejour(Categorie categorie) {     // la creation d'une categorie avec 
-                                                                                  //le taux associe a elle
-           if (validateLocal(categorie.getTauxTaxeSejour())) {  
-            categoriedao.save(categorie);
-            tauxTaxeSejourService.saveTauxTaxeSejour(categorie, categorie.getTauxTaxeSejour());
-            return categorie;
-        } else {
-            return null;
-        }
-    }
-    
 
-    
-    private boolean validateLocal(TauxTaxeSejour tauxTaxeSejour) {     //pour valiser un local
-        if (tauxTaxeSejour == null) {
-            return false;
-        } else if (localProxy.findByReferenceLocal(tauxTaxeSejour.getReferenceLocal()) != null) {
-                  return true;
-                }
+    @Override
+    public int creer(Categorie categorie) {
+        if(categorie==null){
+            return -1;
+        }
         else{
-            return false;
+            categoriedao.save(categorie);
+            return 1;
         }
-    }   
-
-
-    public LocalProxy getLocalProxy() {
-        return localProxy;
     }
-    
-    public TauxTaxeSejourService getTauxTaxeSejourService() {
-        return tauxTaxeSejourService;
-    }
-
-//    @Override
-//    public int creer(Categorie categorie) {
-//        if(categorie==null){
-//            return -1;
-//        }
-//        else{
-//            categoriedao.save(categorie);
-//            return 1;
-//        }
-//    }
-    public void setTauxTaxeSejourService(TauxTaxeSejourService tauxTaxeSejourService) {    
+    public void setTauxTaxeSejourService(TauxTaxeSejourService tauxTaxeSejourService) {
         this.tauxTaxeSejourService = tauxTaxeSejourService;
     }
 
@@ -93,7 +57,6 @@ public class CategorieServiceImpl implements CategorieService{
         this.tauxTaxeSejourDao = tauxTaxeSejourDao;
     }
 
-    
     public CategorieDao getCategoriedao() {
         return categoriedao;
     }
@@ -101,5 +64,13 @@ public class CategorieServiceImpl implements CategorieService{
     public void setCategoriedao(CategorieDao categoriedao) {
         this.categoriedao = categoriedao;
     }
-   
+
+    public LocalProxy getLocalProxy() {
+        return localProxy;
+    }
+
+    public TauxTaxeSejourService getTauxTaxeSejourService() {
+        return tauxTaxeSejourService;
+    }
+
 }

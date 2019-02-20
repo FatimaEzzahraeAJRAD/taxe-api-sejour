@@ -10,6 +10,7 @@ import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import com.sir.taxesejourv1.service.TauxTaxeSejourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +25,8 @@ public class TauxTaxeSejourRest {
     private TauxTaxeSejourService tauxTaxeSejourService;
 
      @PostMapping("/")
-    public int saveTauxTaxeSejour(Categorie categorie, TauxTaxeSejour tauxTaxeSejour) {
-        return tauxTaxeSejourService.saveTauxTaxeSejour(categorie, tauxTaxeSejour);
+    public int saveTauxTaxeSejour(@ RequestBody TauxTaxeSejour tauxTaxeSejour) {
+        return tauxTaxeSejourService.saveTauxTaxeSejour(tauxTaxeSejour);
     }
     
     public TauxTaxeSejourService getTauxTaxeSejourService() {

@@ -26,8 +26,8 @@ public class CategorieRest {
     CategorieService categorieService;
 
      @PostMapping("/")
-    public Categorie saveCategorieWithTauxTaxeSejour(Categorie categorie) {
-        return categorieService.saveCategorieWithTauxTaxeSejour(categorie);
+    public int creer(@ RequestBody Categorie categorie) {
+        return categorieService.creer(categorie);
     }
 
     public CategorieService getCategorieService() {

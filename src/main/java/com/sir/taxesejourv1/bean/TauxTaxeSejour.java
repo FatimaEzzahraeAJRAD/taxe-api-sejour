@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -32,7 +32,7 @@ public class TauxTaxeSejour implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date  dateFin;
     
-    @OneToOne
+    @ManyToOne
     private Categorie categorie;
 
     public Categorie getCategorie() {
