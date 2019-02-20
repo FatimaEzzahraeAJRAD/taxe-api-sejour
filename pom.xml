@@ -11,7 +11,7 @@
 	<groupId>com.sir</groupId>
 	<artifactId>taxe-sejour-v1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>taxe-sejour-v1</name>
+	<name>taxe-api-sejour</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
