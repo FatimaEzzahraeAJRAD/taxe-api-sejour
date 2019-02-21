@@ -8,6 +8,7 @@ package com.sir.taxesejourv1.rest;
 import com.sir.taxesejourv1.bean.Categorie;
 import com.sir.taxesejourv1.service.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author user
  */
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200"}) 
 @RequestMapping({"/taxe-sejour-v1/categorie"})
 public class CategorieRest {
     @Autowired
