@@ -13,6 +13,6 @@ import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
  */
 public interface TaxeSejourTrimestrielleService {
 //    public int saveTaxe(Long annee, String referenceLocal);
-     //public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal);
+    public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal);
      public TaxeSejourTrimestrielle findTaxeTrimestrielleByNumeroTrimesterAndAnnee(int numeroTrimestre,int annee);
 }

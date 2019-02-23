@@ -29,15 +29,13 @@ public class TaxeSejourTrimestrielle implements Serializable {
     private double chiffreAffaire;
     private int numeroTrimester;
     private int annee;
-    private double montantBase;
-    private double montantMajoration;
-    private double montantPenalite;
-    private double montantTaxe;
+    private double montantBase=0;
+    private double montantMajoration=0;
+    private double montantPenalite=0;
+    private double montantTaxe=0;
      @Temporal(javax.persistence.TemporalType.DATE)
     private Date datePresentation;
-     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateValidation;
-   private long nomberMoisRetard;
+   private long nomberMoisRetard=0;
      private String referenceLocal;
     @ManyToOne
     private TaxeSejourAnnuelle taxeSejourAnnuelle;
@@ -114,14 +112,6 @@ public class TaxeSejourTrimestrielle implements Serializable {
         this.datePresentation = datePresentation;
     }
 
-    public Date getDateValidation() {
-        return dateValidation;
-    }
-
-    public void setDateValidation(Date dateValidation) {
-        this.dateValidation = dateValidation;
-    }
-
     public long getNomberMoisRetard() {
         return nomberMoisRetard;
     }
@@ -168,7 +158,8 @@ public class TaxeSejourTrimestrielle implements Serializable {
 
     @Override
     public String toString() {
-        return "com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle[ id=" + id + " ]";
+        return "TaxeSejourTrimestrielle{" + "id=" + id + ", chiffreAffaire=" + chiffreAffaire + ", numeroTrimester=" + numeroTrimester + ", annee=" + annee + ", montantBase=" + montantBase + ", montantMajoration=" + montantMajoration + ", montantPenalite=" + montantPenalite + ", montantTaxe=" + montantTaxe + ", datePresentation=" + datePresentation + ", nomberMoisRetard=" + nomberMoisRetard + ", referenceLocal=" + referenceLocal + '}';
     }
-    
+
+   
 }

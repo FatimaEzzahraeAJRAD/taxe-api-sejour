@@ -127,6 +127,12 @@ public class TaxeSejourTrimestrielleVo {
     public void setTaxeSejourAnnuelleVO(TaxeSejourAnnuelleVo taxeSejourAnnuelleVO) {
         this.taxeSejourAnnuelleVO = taxeSejourAnnuelleVO;
     }
+
+    @Override
+    public String toString() {
+        return "TaxeSejourTrimestrielleVo{" + "id=" + id + ", chiffreAffaire=" + chiffreAffaire + ", numeroTrimester=" + numeroTrimester + ", annee=" + annee + ", montantBase=" + montantBase + ", montantMajoration=" + montantMajoration + ", montantPenalite=" + montantPenalite + ", montantTaxe=" + montantTaxe + ", datePresentation=" + datePresentation + ", dateValidation=" + dateValidation + ", nomberMoisRetard=" + nomberMoisRetard + ", referenceLocal=" + referenceLocal + '}';
+    }
+    
     
 
 }

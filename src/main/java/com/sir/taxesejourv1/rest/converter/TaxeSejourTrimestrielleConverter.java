@@ -9,6 +9,7 @@ import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
 import com.sir.taxesejourv1.rest.vo.TaxeSejourTrimestrielleVo;
 import com.sir.taxesejourv1.util.NumberUtil;
 import java.util.Date;
+import com.sir.taxesejourV1.util.DateUtil;
 import org.springframework.stereotype.Component;
 
 /**
@@ -48,7 +49,7 @@ public class TaxeSejourTrimestrielleConverter extends AbstractConverter<TaxeSejo
             vo.setId(vo.getId());
             vo.setAnnee(NumberUtil.toStringInt(item.getAnnee()));
             vo.setChiffreAffaire(NumberUtil.toStringDouble(item.getChiffreAffaire()));
-           // vo.setDatePresentation(NumberUtil.toString(item.getDatePresentation()));
+            vo.setDatePresentation(DateUtil.formatYYYYMMDDmmhhSS(item.getDatePresentation()));
             vo.setMontantBase(NumberUtil.toStringDouble(item.getMontantBase()));
             vo.setMontantMajoration(NumberUtil.toStringDouble(item.getMontantMajoration()));
             vo.setMontantPenalite(NumberUtil.toStringDouble(item.getMontantMajoration()));

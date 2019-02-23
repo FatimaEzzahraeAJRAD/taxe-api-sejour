@@ -9,6 +9,7 @@ import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import com.sir.taxesejourv1.rest.vo.TauxTaxeSejourVo;
 import com.sir.taxesejourv1.util.NumberUtil;
 import java.util.Date;
+import com.sir.taxesejourV1.util.DateUtil;
 import org.springframework.stereotype.Component;
 
 /**
@@ -40,8 +41,8 @@ public class TauxTaxeSejourConverter extends AbstractConverter<TauxTaxeSejour, T
             TauxTaxeSejourVo vo = new TauxTaxeSejourVo();
             vo.setId(item.getId());
             vo.setPourcentage(NumberUtil.toStringDouble(item.getPourcentage()));
-//            vo.setDateDebut(NumberUtil.toString(item.getDateDebut()));
-//            vo.setDateFin(NumberUtil.toString(item.getDateFin()));
+          vo.setDateDebut(DateUtil.formatYYYYMMDDmmhhSS(item.getDateDebut()));
+          vo.setDateFin(DateUtil.formatYYYYMMDDmmhhSS(item.getDateFin()));
             vo.setReferenceLocal(item.getReferenceLocal());
             return vo;
         }
