@@ -25,6 +25,7 @@ public class TaxeSejourTrimestrielle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private String reference ;
     private Long id;
     private double chiffreAffaire;
     private int numeroTrimester;
@@ -48,6 +49,15 @@ public class TaxeSejourTrimestrielle implements Serializable {
         this.id = id;
     }
 
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    
     public double getChiffreAffaire() {
         return chiffreAffaire;
     }

@@ -28,7 +28,7 @@ public class TaxeSejourTrimestrielleConverter extends AbstractConverter<TaxeSejo
             item.setId(vo.getId());
             item.setAnnee(NumberUtil.toIneger(vo.getAnnee()));
             item.setChiffreAffaire(NumberUtil.toDouble(vo.getChiffreAffaire()));
-            item.setDatePresentation(new Date(vo.getDatePresentation()));
+            item.setDatePresentation(DateUtil.parseYYYYMMDDmmhhSS(vo.getDatePresentation()));
             item.setMontantBase(NumberUtil.toDouble(vo.getMontantBase()));
             item.setMontantMajoration( NumberUtil.toDouble(vo.getMontantMajoration()));
             item.setMontantPenalite(NumberUtil.toDouble(vo.getMontantMajoration()));
@@ -36,6 +36,7 @@ public class TaxeSejourTrimestrielleConverter extends AbstractConverter<TaxeSejo
             item.setNomberMoisRetard(NumberUtil.toIneger(vo.getNomberMoisRetard()));
             item.setNumeroTrimester(NumberUtil.toIneger(vo.getNumeroTrimester()));
             item.setReferenceLocal(vo.getReferenceLocal());
+            item.setReference(vo.getReference());
             return item;
         }
     }
@@ -58,6 +59,7 @@ public class TaxeSejourTrimestrielleConverter extends AbstractConverter<TaxeSejo
             vo.setNumeroTrimester(NumberUtil.toStringInt(item.getNumeroTrimester()));
             vo.setReferenceLocal(item.getReferenceLocal());
             vo.setTaxeSejourAnnuelleVO(new TaxeSejourAnnuelleConverter().toVo(item.getTaxeSejourAnnuelle()));
+            vo.setReference(item.getReference());
             return vo;
         }
     }

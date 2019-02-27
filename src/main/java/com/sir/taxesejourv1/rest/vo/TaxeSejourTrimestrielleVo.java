@@ -11,6 +11,7 @@ package com.sir.taxesejourv1.rest.vo;
  */
 public class TaxeSejourTrimestrielleVo {
      private Long id;
+     private String reference;
     private String chiffreAffaire;
     private String numeroTrimester;
     private String annee;
@@ -32,6 +33,15 @@ public class TaxeSejourTrimestrielleVo {
         this.id = id;
     }
 
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    
     public String getChiffreAffaire() {
         return chiffreAffaire;
     }

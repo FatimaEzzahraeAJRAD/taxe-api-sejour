@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
  *
  * @author Jawadoo
  */
-@FeignClient(name="microservice3-commande",url="localhost:8099" )
+@FeignClient(name="microservice-adress-api",url="localhost:8090" )
 
 public interface LocalProxy {
-     @GetMapping("/adress-api-v1/Local/referenceLocal/{referenceLocal}")
-    public LocalVo findByReferenceLocal(@PathVariable("referenceLocal") String referenceLocal);
+     @GetMapping("/taxe-api-souk/local/reference/{reference}")
+    public LocalVo findByReferenceLocal(@PathVariable("reference") String reference);
      @GetMapping("/adress-api-v1/Local/refCategorie/{refCategorie}")
     public LocalVo findByRefCategorie(@PathVariable("refCategorie") String refCategorie);
 }

@@ -14,6 +14,7 @@ import com.sir.taxesejourv1.rest.proxy.LocalProxy;
 import com.sir.taxesejourv1.service.TauxTaxeSejourService;
 import com.sir.taxesejourv1.service.TaxeSejourTrimestrielleService;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,44 +31,45 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
     private TauxTaxeSejourService tauxTaxeSejourService;
     @Autowired
     private LocalProxy localProxy;
-    
-    
 
     @Override
     public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal) {
-        TaxeSejourTrimestrielle t = findTaxeTrimestrielleByNumeroTrimesterAndAnnee(taxesejourTrimestrielle.getNumeroTrimester(), taxesejourTrimestrielle.getAnnee());
+        TaxeSejourTrimestrielle t = findByReference(taxesejourTrimestrielle.getReference());
         if (t != null) {
-             System.out.println("-- version 1");
+            System.out.println("-- version 1");
             return -1;
         } else {
-            long nbMoisRetard = calculeNbrMoisRetard(taxesejourTrimestrielle);  
+            long nbMoisRetard = calculeNbrMoisRetard(taxesejourTrimestrielle);
             taxesejourTrimestrielle.setNomberMoisRetard(nbMoisRetard);
             long moisRetard = taxesejourTrimestrielle.getNomberMoisRetard();
-             LocalVo localvo = localProxy.findByReferenceLocal(referenceLocal);
-          TauxTaxeSejour tauxTaxeSejour = tauxTaxeSejourService.findByCategorieLibelle(localvo.getLebelle());
-            Double montantBase = taxesejourTrimestrielle.getChiffreAffaire() *tauxTaxeSejour.getPourcentage()/100;
+            // LocalVo localvo = new LocalVo();
+            // localvo.setReference(referenceLocal);
+            LocalVo localvo = localProxy.findByReferenceLocal(referenceLocal);
+            //localvo.setLebelle("Raid");
+            TauxTaxeSejour tauxTaxeSejour = tauxTaxeSejourService.findByCategorieLibelle(localvo.getLebelle());
+            Double montantBase = taxesejourTrimestrielle.getChiffreAffaire() * tauxTaxeSejour.getPourcentage() / 100;
             taxesejourTrimestrielle.setMontantBase(montantBase);
- System.out.println("-- version 2");
+            System.out.println("-- version 2");
             if (moisRetard == 0) {
                 taxesejourTrimestrielle.setMontantTaxe(montantBase);
                 taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
-                 System.out.println("-- version 3");
+                System.out.println("-- version 3");
                 return 1;
             } else {
                 taxesejourTrimestrielle.setMontantMajoration(montantBase * 10 / 100);
                 if (moisRetard == 1) {
                     taxesejourTrimestrielle.setMontantTaxe(montantBase + taxesejourTrimestrielle.getMontantMajoration());
                     taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
-                     System.out.println("-- version 4");
+                    System.out.println("-- version 4");
                     return 2;
                 } else {
                     taxesejourTrimestrielle.setMontantPenalite(montantBase * moisRetard * 5 / 100);
                     taxesejourTrimestrielle.setMontantTaxe(montantBase + taxesejourTrimestrielle.getMontantMajoration() + taxesejourTrimestrielle.getMontantPenalite());
                     taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
-                     System.out.println("-- version 5");
+                    System.out.println("-- version 5");
                     return 3;
                 }
-                
+
             }
         }
     }
@@ -75,7 +77,7 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
     private long calculeNbrMoisRetard(TaxeSejourTrimestrielle taxesejourTrimestrielle) {
         long mois = 1000 * 60 * 60 * 24 * 30;           //un mois est contient combient de ms
         Date toDay = new Date();
-        long val =toDay.getTime() - taxesejourTrimestrielle.getDatePresentation().getTime()  ;
+        long val = toDay.getTime() - taxesejourTrimestrielle.getDatePresentation().getTime();
         long nbMoisRetard = val / mois;
         return nbMoisRetard;
     }
@@ -99,11 +101,21 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
 //        taxeSejourTrimestrielleDao.save(taxeSejourTrimestrielle);
 //        return 1;
 //    }
-    @Override
-    public TaxeSejourTrimestrielle findTaxeTrimestrielleByNumeroTrimesterAndAnnee(int numeroTrimestre, int annee) {
-        return taxeSejourTrimestrielleDao.findTaxeTrimestrielleByNumeroTrimesterAndAnnee(numeroTrimestre, annee);
+    @Override  // permet de trouver un taxe d'apres leur reference 
+    public TaxeSejourTrimestrielle findByReference(String reference) {
+        return taxeSejourTrimestrielleDao.findByReference(reference);
     }
 
+    @Override // permet de trouver tous les taxe assicie a un local d'apres reference de local
+    public List<TaxeSejourTrimestrielle> findByLocalReference(String referenceLocal){
+        return taxeSejourTrimestrielleDao.findByLocalReference(referenceLocal);
+    }
+     @Override
+    public List<TaxeSejourTrimestrielle> findByCriteria(Integer annee, Integer montantMin, Integer montantMax) {
+        return taxeSejourTrimestrielleDao.findByCriteria(annee, montantMin, montantMax);
+    }
+    
+    
     public TaxeSejourTrimestrielleDao getTaxeSejourTrimestrielleDao() {
         return taxeSejourTrimestrielleDao;
     }
@@ -127,5 +139,9 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
     public void setTauxTaxeSejourService(TauxTaxeSejourService tauxTaxeSejourService) {
         this.tauxTaxeSejourService = tauxTaxeSejourService;
     }
+
+   
+
+    
 
 }

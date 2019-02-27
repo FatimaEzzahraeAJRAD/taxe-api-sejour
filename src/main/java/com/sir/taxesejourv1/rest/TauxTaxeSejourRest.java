@@ -5,8 +5,9 @@
  */
 package com.sir.taxesejourv1.rest;
 
-import com.sir.taxesejourv1.bean.Categorie;
 import com.sir.taxesejourv1.bean.TauxTaxeSejour;
+import com.sir.taxesejourv1.rest.converter.TauxTaxeSejourConverter;
+import com.sir.taxesejourv1.rest.vo.TauxTaxeSejourVo;
 import com.sir.taxesejourv1.service.TauxTaxeSejourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,11 +26,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class TauxTaxeSejourRest {
     @Autowired
     private TauxTaxeSejourService tauxTaxeSejourService;
+    @Autowired
+    private TauxTaxeSejourConverter tauxTaxeSejourConverter;
 
      @PostMapping("/")
-    public int saveTauxTaxeSejour(@ RequestBody TauxTaxeSejour tauxTaxeSejour) {
-        return tauxTaxeSejourService.saveTauxTaxeSejour(tauxTaxeSejour);
+    public int saveTauxTaxeSejour(@RequestBody TauxTaxeSejourVo tauxTaxeSejourVo) {
+        TauxTaxeSejour tauxTaxeSejour = tauxTaxeSejourConverter.toItem(tauxTaxeSejourVo);
+        int res= tauxTaxeSejourService.saveTauxTaxeSejour(tauxTaxeSejour);
+         return res;
     }
+
+    public TauxTaxeSejourConverter getTauxTaxeSejourConverter() {
+        return tauxTaxeSejourConverter;
+    }
+
+    public void setTauxTaxeSejourConverter(TauxTaxeSejourConverter tauxTaxeSejourConverter) {
+        this.tauxTaxeSejourConverter = tauxTaxeSejourConverter;
+    }
+    
+    
     
     public TauxTaxeSejourService getTauxTaxeSejourService() {
         return tauxTaxeSejourService;

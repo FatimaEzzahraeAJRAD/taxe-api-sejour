@@ -27,8 +27,8 @@ public class TauxTaxeSejourConverter extends AbstractConverter<TauxTaxeSejour, T
             TauxTaxeSejour item = new TauxTaxeSejour();
             item.setId(vo.getId());
             item.setPourcentage(NumberUtil.toDouble(vo.getPourcentage()));
-            item.setDateDebut(new Date (vo.getDateDebut()));
-            item.setDateFin(new Date(vo.getDateFin()));
+            item.setDateDebut(DateUtil.parseYYYYMMDDmmhhSS(vo.getDateDebut()));
+            item.setDateFin(DateUtil.parseYYYYMMDDmmhhSS(vo.getDateFin()));
             item.setReferenceLocal(vo.getReferenceLocal());
             return item;
         }

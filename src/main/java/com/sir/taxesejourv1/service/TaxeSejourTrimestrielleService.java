@@ -6,6 +6,9 @@
 package com.sir.taxesejourv1.service;
 
 import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
+import com.sir.taxesejourv1.rest.exchage.vo.LocalVo;
+import java.util.List;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -14,5 +17,7 @@ import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
 public interface TaxeSejourTrimestrielleService {
 //    public int saveTaxe(Long annee, String referenceLocal);
     public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal);
-     public TaxeSejourTrimestrielle findTaxeTrimestrielleByNumeroTrimesterAndAnnee(int numeroTrimestre,int annee);
+      public TaxeSejourTrimestrielle findByReference(String reference);
+       public List<TaxeSejourTrimestrielle> findByLocalReference(String referenceLocal);
+        public List<TaxeSejourTrimestrielle> findByCriteria( Integer annee,Integer montantMin,Integer montantMax);
 }

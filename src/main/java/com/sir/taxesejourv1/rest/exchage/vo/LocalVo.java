@@ -32,6 +32,7 @@ public class LocalVo implements Serializable {
     private String dernierTrimestrePaye ;
     private String dernierAnneePaye ;
     private String lebelle;
+    // categoerieVo
 
     public String getChiffreAffaire() {
         return chiffreAffaire;
