@@ -12,8 +12,10 @@ import com.sir.taxesejourv1.dao.TauxTaxeSejourDao;
 import com.sir.taxesejourv1.rest.proxy.LocalProxy;
 import com.sir.taxesejourv1.service.CategorieService;
 import com.sir.taxesejourv1.service.TauxTaxeSejourService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
@@ -25,13 +27,14 @@ public class CategorieServiceImpl implements CategorieService {
     @Autowired
     private CategorieDao categoriedao;
     @Autowired
+    private CategorieService categorieService;
+    @Autowired
     private TauxTaxeSejourDao tauxTaxeSejourDao;
     @Autowired
     private TauxTaxeSejourService tauxTaxeSejourService;
     @Autowired
     private LocalProxy localProxy;
 
-    @Override
     public int creer(Categorie categorie) {
         if(categorie==null){
             return -1;
@@ -40,6 +43,10 @@ public class CategorieServiceImpl implements CategorieService {
             categoriedao.save(categorie);
             return 1;
         }
+    }
+      @GetMapping("/")
+    public List<Categorie> findAll() {
+        return categorieService.findAll();
     }
     public void setTauxTaxeSejourService(TauxTaxeSejourService tauxTaxeSejourService) {
         this.tauxTaxeSejourService = tauxTaxeSejourService;
@@ -73,4 +80,14 @@ public class CategorieServiceImpl implements CategorieService {
         return tauxTaxeSejourService;
     }
 
+
+    public CategorieService getCategorieService() {
+        return categorieService;
+    }
+
+    public void setCategorieService(CategorieService categorieService) {
+        this.categorieService = categorieService;
+    }
+
+    
 }

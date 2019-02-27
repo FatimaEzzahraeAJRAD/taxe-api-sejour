@@ -7,6 +7,7 @@ package com.sir.taxesejourv1.service;
 
 import com.sir.taxesejourv1.bean.Categorie;
 import com.sir.taxesejourv1.bean.TauxTaxeSejour;
+import java.util.List;
 
 /**
  *
@@ -14,7 +15,7 @@ import com.sir.taxesejourv1.bean.TauxTaxeSejour;
  */
 public  interface CategorieService {
      public int creer(Categorie categorie);
-     //public Categorie saveCategorieWithTauxTaxeSejour(Categorie categorie);
+    public List<Categorie> findAll();
   
      
         
