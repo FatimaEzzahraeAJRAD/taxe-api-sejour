@@ -53,8 +53,8 @@ public class TaxeSejourTrimestrielleRest {
     }
     
     @GetMapping("/referenceLocal/{referenceLocal}")
-    public List<TaxeSejourTrimestrielle> findByLocalReference( @PathVariable String referenceLocal) {
-        return taxeSejourTrimestrielleService.findByLocalReference(referenceLocal);
+    public List<TaxeSejourTrimestrielle> findByReferenceLocal( @PathVariable String referenceLocal) {
+        return taxeSejourTrimestrielleService.findByReferenceLocal(referenceLocal);
     }
    @GetMapping("/annee,montantMin,montantMax/{annee,montantMin,montantMax}")
     public List<TaxeSejourTrimestrielle> findByCriteria(Integer annee, Integer montantMin, Integer montantMax) {

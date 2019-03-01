@@ -6,10 +6,12 @@
 package com.sir.taxesejourv1.bean;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,7 +25,18 @@ public class Categorie implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String libelle;
-   
+     @OneToMany(mappedBy = "categorie")
+    private List<Local> locals;
+   @OneToMany(mappedBy = "categorie")
+    private List<TauxTaxeSejour> tauxTaxeSejours;
+
+    public List<TauxTaxeSejour> getTauxTaxeSejours() {
+        return tauxTaxeSejours;
+    }
+
+    public void setTauxTaxeSejours(List<TauxTaxeSejour> tauxTaxeSejours) {
+        this.tauxTaxeSejours = tauxTaxeSejours;
+    }
     
 
     public String getLibelle() {
@@ -41,6 +54,15 @@ public class Categorie implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public List<Local> getLocals() {
+        return locals;
+    }
+
+    public void setLocals(List<Local> locals) {
+        this.locals = locals;
+    }
+    
 
     @Override
     public int hashCode() {

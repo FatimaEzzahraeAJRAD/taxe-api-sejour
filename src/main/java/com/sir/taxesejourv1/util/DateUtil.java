@@ -63,5 +63,62 @@ public class DateUtil {
     public static java.sql.Date convertToSqlDate(java.util.Date date) {
         return new java.sql.Date(date.getTime());
     }
+    
+     public static int[] nextMois(int mois,int annee){
+      if(mois==0 && annee ==0){
+          mois = new Date().getMonth()+1;
+          annee= new Date().getYear()+1900;                                     // date par defaut mdekalyia 3ndhiom b 1 f les mois o 1900 f les annee dakechi dyial le pape gregore :p
+          return new int[]{mois,annee};
+      }
+        if(mois<12){
+            return new int[]{++mois,annee};
+        }else{
+             return new int[]{1,++annee};
+        }
+    }
+    
+    public static int calculerNbMoisDeRetard(Date dateDePayement) {
+
+        int moisActuel = new Date().getMonth()+1;
+        int anneeActuelle = new Date().getYear() + 1900;
+        int moisRetard = dateDePayement.getMonth();
+        int anneeRetard = dateDePayement.getYear();
+
+        if (anneeActuelle < anneeRetard) {
+            return -1;
+        } else if (anneeActuelle == anneeRetard) {
+            if (moisActuel > moisRetard) {
+                return moisActuel - moisRetard;
+            } else if (moisActuel < moisRetard || moisActuel >= moisRetard - 3) {
+                return 0;
+            } else {
+                return -2;
+            }
+        } else {
+            int nbMois = (anneeActuelle - anneeRetard) * 12 - moisRetard + moisActuel;
+            return nbMois;
+        }
+    }
+    
+    public static java.sql.Date getSqlDate(java.util.Date date) {
+        return new java.sql.Date(date.getTime());
+    }
+    public static java.sql.Timestamp convertFromDateToTimestamp(java.util.Date date) {
+        return new java.sql.Timestamp(date.getTime());
+    }
+
+    public static java.sql.Timestamp getSqlDateTime(java.util.Date date) {
+        return new java.sql.Timestamp(date.getTime());
+    }
+
+    public static String getYearOfCurrentDate() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
+        return simpleDateFormat.format(new Date());
+    }
+
+    public static String formateDate(String pattern, Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(date);
+    }
  
 }
