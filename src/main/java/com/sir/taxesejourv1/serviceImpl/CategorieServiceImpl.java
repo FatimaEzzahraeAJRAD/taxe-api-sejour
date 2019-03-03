@@ -44,9 +44,9 @@ public class CategorieServiceImpl implements CategorieService {
             return 1;
         }
     }
-      @GetMapping("/")
+  
     public List<Categorie> findAll() {
-        return categorieService.findAll();
+        return categoriedao.findAll();
     }
     public void setTauxTaxeSejourService(TauxTaxeSejourService tauxTaxeSejourService) {
         this.tauxTaxeSejourService = tauxTaxeSejourService;

@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name="microservice-adress-api",url="localhost:8090" )
 
 public interface LocalProxy {
-     @GetMapping("/taxe-api-souk/local/reference/{reference}")
-    public LocalVo findByReferenceLocal(@PathVariable("reference") String reference);
-     @GetMapping("/adress-api-v1/Local/refCategorie/{refCategorie}")
-    public LocalVo findByRefCategorie(@PathVariable("refCategorie") String refCategorie);
+     @GetMapping("/taxe-api/local/reference/{reference}")
+    public LocalVo findByReference(@PathVariable("reference") String reference);
+//     @GetMapping("/adress-api-v1/Local/refCategorie/{refCategorie}")
+//    public LocalVo findByRefCategorie(@PathVariable("refCategorie") String refCategorie);
+    
 }
+

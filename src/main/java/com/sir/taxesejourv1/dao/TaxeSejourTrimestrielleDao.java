@@ -20,10 +20,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TaxeSejourTrimestrielleDao extends JpaRepository<TaxeSejourTrimestrielle, Long>{
      public TaxeSejourTrimestrielle findByReference(String reference);
-     public List<TaxeSejourTrimestrielle> findByReferenceLocal(String referenceLocal);
      
-     @Query("select t from TaxeSejourTrimestrielle t where t.annee= :annee and t.montantTaxe> :montantMin "
-             + "and t.montantTaxe< :montantMax ")
-      public List<TaxeSejourTrimestrielle> findByCriteria(@Param ("annee") Integer annee,
-              @Param ("montantMin" )Integer montantMin,@Param ("montantMax") Integer montantMax);
+//     public List<TaxeSejourTrimestrielle> findByLocalReference(String referenceLocal);
+//     
+//     @Query("select t from TaxeSejourTrimestrielle t where t.annee= :annee and t.montantTaxe> :montantMin "
+//             + "and t.montantTaxe< :montantMax ")
+//      public List<TaxeSejourTrimestrielle> findByCriteria(@Param ("annee") Integer annee,
+//              @Param ("montantMin" )Integer montantMin,@Param ("montantMax") Integer montantMax);
 }

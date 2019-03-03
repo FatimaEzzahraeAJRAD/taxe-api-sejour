@@ -18,6 +18,6 @@ public interface TaxeSejourTrimestrielleService {
 //    public int saveTaxe(Long annee, String referenceLocal);
     public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal);
       public TaxeSejourTrimestrielle findByReference(String reference);
-       public List<TaxeSejourTrimestrielle> findByReferenceLocal(String referenceLocal);
-        public List<TaxeSejourTrimestrielle> findByCriteria( Integer annee,Integer montantMin,Integer montantMax);
+      // public List<TaxeSejourTrimestrielle> findByLocalReference(String referenceLocal);
+        //public List<TaxeSejourTrimestrielle> findByCriteria( Integer annee,Integer montantMin,Integer montantMax);
 }

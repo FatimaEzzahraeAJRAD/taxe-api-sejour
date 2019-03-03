@@ -6,6 +6,7 @@
 package com.sir.taxesejourv1.dao;
 
 import com.sir.taxesejourv1.bean.Categorie;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CategorieDao extends JpaRepository<Categorie, Long>{
-
+ 
 }
