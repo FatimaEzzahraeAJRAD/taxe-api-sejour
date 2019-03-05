@@ -5,7 +5,6 @@
  */
 package com.sir.taxesejourv1.dao;
 
-import com.sir.taxesejourv1.bean.Categorie;
 import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,5 +15,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TauxTaxeSejourDao extends JpaRepository<TauxTaxeSejour,Long>{
-    public TauxTaxeSejour findByCategorieLibelle(String libelle);
+    public TauxTaxeSejour findByCategorieRefCategorie(String refCategorie);
 }

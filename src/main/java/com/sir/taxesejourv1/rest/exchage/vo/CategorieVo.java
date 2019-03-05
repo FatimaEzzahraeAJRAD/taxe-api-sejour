@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sir.taxesejourv1.rest.vo;
+package com.sir.taxesejourv1.rest.exchage.vo;
 
 /**
  *
@@ -13,7 +13,17 @@ public class CategorieVo {
     
     private Long id;
     private String libelle;
+    private String refCategorie;
 
+    public String getRefCategorie() {
+        return refCategorie;
+    }
+
+    public void setRefCategorie(String refCategorie) {
+        this.refCategorie = refCategorie;
+    }
+
+    
     public Long getId() {
         return id;
     }

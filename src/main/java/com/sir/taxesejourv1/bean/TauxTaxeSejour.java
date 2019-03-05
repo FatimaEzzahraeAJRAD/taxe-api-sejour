@@ -31,16 +31,14 @@ public class TauxTaxeSejour implements Serializable {
     private Date dateDebut;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date  dateFin;
-    
-    @ManyToOne
-    private Categorie categorie;
+    private String refCategorie;
 
-    public Categorie getCategorie() {
-        return categorie;
+    public String getRefCategorie() {
+        return refCategorie;
     }
 
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
+    public void setRefCategorie(String refCategorie) {
+        this.refCategorie = refCategorie;
     }
 
     

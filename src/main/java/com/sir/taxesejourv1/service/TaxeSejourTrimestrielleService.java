@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 
 /**
  *
- * @author Jawadoo
  */
 public interface TaxeSejourTrimestrielleService {
 //    public int saveTaxe(Long annee, String referenceLocal);

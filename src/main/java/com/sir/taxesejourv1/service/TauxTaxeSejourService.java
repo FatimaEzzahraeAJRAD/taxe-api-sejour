@@ -5,7 +5,6 @@
  */
 package com.sir.taxesejourv1.service;
 
-import com.sir.taxesejourv1.bean.Categorie;
 import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +14,6 @@ import org.springframework.stereotype.Service;
  */
 
 public interface TauxTaxeSejourService {
-    public TauxTaxeSejour findByCategorieLibelle(String libelle);
+    public TauxTaxeSejour findByCategorieRefCategorie(String refCategorie);
     public int saveTauxTaxeSejour(TauxTaxeSejour tauxTaxeSejour);
 }

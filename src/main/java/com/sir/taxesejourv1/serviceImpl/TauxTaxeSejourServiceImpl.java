@@ -5,7 +5,6 @@
  */
 package com.sir.taxesejourv1.serviceImpl;
 
-import com.sir.taxesejourv1.bean.Categorie;
 import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import com.sir.taxesejourv1.dao.TauxTaxeSejourDao;
 import com.sir.taxesejourv1.service.TauxTaxeSejourService;
@@ -23,8 +22,8 @@ public class TauxTaxeSejourServiceImpl implements TauxTaxeSejourService {
     private TauxTaxeSejourDao tauxTaxeSejourDao;
     
      @Override
-    public TauxTaxeSejour findByCategorieLibelle(String libelle) {
-        return  tauxTaxeSejourDao.findByCategorieLibelle(libelle);
+    public TauxTaxeSejour findByCategorieRefCategorie(String refCategorie) {
+        return  tauxTaxeSejourDao.findByCategorieRefCategorie(refCategorie);
     }
 
     @Override

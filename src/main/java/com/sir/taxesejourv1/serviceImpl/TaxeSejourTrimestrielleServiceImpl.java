@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Jawadoo
+ *
  */
 @Service
 public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestrielleService {
@@ -46,7 +46,7 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
             // localvo.setReference(referenceLocal);
             LocalVo localvo = localProxy.findByReference(taxesejourTrimestrielle.getReferenceLocal());
             //localvo.setLebelle("Raid");
-            TauxTaxeSejour tauxTaxeSejour = tauxTaxeSejourService.findByCategorieLibelle(localvo.getLebelle());
+            TauxTaxeSejour tauxTaxeSejour = tauxTaxeSejourService.findByCategorieRefCategorie(localvo.getRefCategorie());
             Double montantBase = taxesejourTrimestrielle.getChiffreAffaire() * tauxTaxeSejour.getPourcentage() / 100;
             taxesejourTrimestrielle.setMontantBase(montantBase);
             System.out.println("-- version 2");

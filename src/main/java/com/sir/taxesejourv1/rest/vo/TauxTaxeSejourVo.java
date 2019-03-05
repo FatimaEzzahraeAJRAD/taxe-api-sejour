@@ -15,7 +15,7 @@ public class TauxTaxeSejourVo {
     private String dateDebut;
     private String  dateFin;
     private String referenceLocal;
-    private CategorieVo categorieVo;
+    private String refCategorie;
 
     public String getReferenceLocal() {
         return referenceLocal;
@@ -59,12 +59,12 @@ public class TauxTaxeSejourVo {
         this.dateFin = dateFin;
     }
 
-    public CategorieVo getCategorieVo() {
-        return categorieVo;
+    public String getRefCategorie() {
+        return refCategorie;
     }
 
-    public void setCategorieVo(CategorieVo categorieVo) {
-        this.categorieVo = categorieVo;
+    public void setRefCategorie(String refCategorie) {
+        this.refCategorie = refCategorie;
     }
 
 }
