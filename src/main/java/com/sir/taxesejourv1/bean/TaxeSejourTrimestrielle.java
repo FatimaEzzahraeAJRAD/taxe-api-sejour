@@ -36,6 +36,8 @@ public class TaxeSejourTrimestrielle implements Serializable {
     private double montantTaxe=0;
      @Temporal(javax.persistence.TemporalType.DATE)
     private Date datePresentation;
+      @Temporal(javax.persistence.TemporalType.DATE)
+    private Date datePaiment;
    private long nomberMoisRetard=0;
      private String referenceLocal;
     @ManyToOne
@@ -122,6 +124,15 @@ public class TaxeSejourTrimestrielle implements Serializable {
         this.datePresentation = datePresentation;
     }
 
+    public Date getDatePaiment() {
+        return datePaiment;
+    }
+
+    public void setDatePaiment(Date datePaiment) {
+        this.datePaiment = datePaiment;
+    }
+
+    
     public long getNomberMoisRetard() {
         return nomberMoisRetard;
     }

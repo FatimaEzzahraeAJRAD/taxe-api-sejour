@@ -6,6 +6,8 @@
 package com.sir.taxesejourv1.dao;
 
 import com.sir.taxesejourv1.bean.TauxTaxeSejour;
+import java.util.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TauxTaxeSejourDao extends JpaRepository<TauxTaxeSejour,Long>{
-    public TauxTaxeSejour findByRefCategorie(String refCategorie);
+    public List<TauxTaxeSejour> findByRefCategorie(String refCategorie);
+    // public   TauxTaxeSejour findByRefCategorieAndDate(String refCategorie,Date date);
 }

@@ -34,8 +34,7 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
     @Autowired
     private CategorieProxy categorieProxy;
 
-    @Override
-     @Override
+    @Override  // nous peremetons de creer le taxe 
     public TaxeSejourTrimestrielle creertaxe(TaxeSejourTrimestrielle taxe) {
        TaxeSejourTrimestrielle t = findByReference(taxe.getReference());
         if (t != null) {
@@ -44,14 +43,20 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
             // chercher le pourcentage du tauxtrimestriel
             LocalVo localvo = localProxy.findByReference(taxe.getReferenceLocal());
             CategorieVo cat = localvo.getCategorieVo();
-            TauxTaxeSejour tauxTaxeSejour=tauxTaxeSejourService.findByCategorieReferenceAndDate(cat.getReference(), taxe.getDateDernierDelaiPaiment());
+            TauxTaxeSejour tauxTaxeSejour=tauxTaxeSejourService.findByRefCategorieAndDate(cat.getRefCategorie(), taxe.getDatePaiment());
             double pourcentage=tauxTaxeSejour.getPourcentage();
           
-            taxe.setMontantDeBase(calculerMontantDeBase(pourcentage,surface));
-            taxeTrimesrielleDao.save(taxe);
+            taxe.setMontantBase(calculerMontantDeBase(pourcentage,taxe.getChiffreAffaire()));
+            taxeSejourTrimestrielleDao.save(taxe);
             return taxe;
         }
     }
+    
+    @Override // nous permetons de calculer le monatant de base 
+    public double calculerMontantDeBase(double pourcentage, double chiffreAffaire) {
+        return chiffreAffaire * pourcentage;
+    }
+    
     
 //    public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal) {
 //        TaxeSejourTrimestrielle t = findByReference(taxesejourTrimestrielle.getReference());

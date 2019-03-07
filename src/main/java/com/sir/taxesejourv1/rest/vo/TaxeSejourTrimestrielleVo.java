@@ -20,7 +20,7 @@ public class TaxeSejourTrimestrielleVo {
     private String montantPenalite;
     private String montantTaxe;
     private String datePresentation;
-    private String dateValidation;
+    private String datePaiment;
    private String nomberMoisRetard;
      private String referenceLocal;
     private TaxeSejourAnnuelleVo taxeSejourAnnuelleVO;
@@ -106,13 +106,15 @@ public class TaxeSejourTrimestrielleVo {
         this.datePresentation = datePresentation;
     }
 
-    public String getDateValidation() {
-        return dateValidation;
+    public String getDatePaiment() {
+        return datePaiment;
     }
 
-    public void setDateValidation(String dateValidation) {
-        this.dateValidation = dateValidation;
+    public void setDatePaiment(String datePaiment) {
+        this.datePaiment = datePaiment;
     }
+
+    
 
     public String getNomberMoisRetard() {
         return nomberMoisRetard;
@@ -140,7 +142,7 @@ public class TaxeSejourTrimestrielleVo {
 
     @Override
     public String toString() {
-        return "TaxeSejourTrimestrielleVo{" + "id=" + id + ", chiffreAffaire=" + chiffreAffaire + ", numeroTrimester=" + numeroTrimester + ", annee=" + annee + ", montantBase=" + montantBase + ", montantMajoration=" + montantMajoration + ", montantPenalite=" + montantPenalite + ", montantTaxe=" + montantTaxe + ", datePresentation=" + datePresentation + ", dateValidation=" + dateValidation + ", nomberMoisRetard=" + nomberMoisRetard + ", referenceLocal=" + referenceLocal + '}';
+        return "TaxeSejourTrimestrielleVo{" + "id=" + id + ", chiffreAffaire=" + chiffreAffaire + ", numeroTrimester=" + numeroTrimester + ", annee=" + annee + ", montantBase=" + montantBase + ", montantMajoration=" + montantMajoration + ", montantPenalite=" + montantPenalite + ", montantTaxe=" + montantTaxe + ", datePresentation=" + datePresentation + ", nomberMoisRetard=" + nomberMoisRetard + ", referenceLocal=" + referenceLocal + '}';
     }
     
     

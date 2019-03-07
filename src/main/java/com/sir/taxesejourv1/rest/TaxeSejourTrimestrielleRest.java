@@ -39,12 +39,10 @@ public class TaxeSejourTrimestrielleRest {
 
 
     @PostMapping("/")
-    public int creertaxe(@RequestBody TaxeSejourTrimestrielleVo taxesejourTrimestrielleVo, String referenceLocal) {
-        System.out.println("taxe sejour "+taxesejourTrimestrielleVo);
-        System.out.println("ref local "+taxesejourTrimestrielleVo.getReferenceLocal());
-        TaxeSejourTrimestrielle taxeSejourTrimestrielle = taxeSejourTrimestrielleConverter.toItem(taxesejourTrimestrielleVo);
-        int res = taxeSejourTrimestrielleService.creertaxe(taxeSejourTrimestrielle, taxesejourTrimestrielleVo.getReferenceLocal());
-        return res;
+    public TaxeSejourTrimestrielleVo creertaxe(@RequestBody TaxeSejourTrimestrielleVo taxesejourTrimestrielleVo) {
+        TaxeSejourTrimestrielle taxe = taxeSejourTrimestrielleConverter.toItem(taxesejourTrimestrielleVo);
+      TaxeSejourTrimestrielle taxeSejourTrimestrielle  = taxeSejourTrimestrielleService.creertaxe(taxe);
+        return taxeSejourTrimestrielleConverter.toVo(taxeSejourTrimestrielle);
     }
 
      @GetMapping("/reference/{reference}")

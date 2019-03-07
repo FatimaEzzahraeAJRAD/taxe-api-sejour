@@ -15,8 +15,9 @@ import org.springframework.data.repository.query.Param;
  */
 public interface TaxeSejourTrimestrielleService {
 //    public int saveTaxe(Long annee, String referenceLocal);
-    public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal);
+    public TaxeSejourTrimestrielle creertaxe(TaxeSejourTrimestrielle taxe);
       public TaxeSejourTrimestrielle findByReference(String reference);
+      public double calculerMontantDeBase(double pourcentage, double chiffreAffaire);
       // public List<TaxeSejourTrimestrielle> findByLocalReference(String referenceLocal);
         //public List<TaxeSejourTrimestrielle> findByCriteria( Integer annee,Integer montantMin,Integer montantMax);
 }
