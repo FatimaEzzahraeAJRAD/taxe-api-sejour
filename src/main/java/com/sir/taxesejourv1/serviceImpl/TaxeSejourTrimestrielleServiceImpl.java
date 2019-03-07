@@ -5,16 +5,16 @@
  */
 package com.sir.taxesejourv1.serviceImpl;
 
-import com.sir.taxesejourV1.util.DateUtil;
 import com.sir.taxesejourv1.bean.TauxTaxeSejour;
 import com.sir.taxesejourv1.bean.TaxeSejourTrimestrielle;
 import com.sir.taxesejourv1.dao.TaxeSejourTrimestrielleDao;
+import com.sir.taxesejourv1.rest.exchage.vo.CategorieVo;
 import com.sir.taxesejourv1.rest.exchage.vo.LocalVo;
+import com.sir.taxesejourv1.rest.proxy.CategorieProxy;
 import com.sir.taxesejourv1.rest.proxy.LocalProxy;
 import com.sir.taxesejourv1.service.TauxTaxeSejourService;
 import com.sir.taxesejourv1.service.TaxeSejourTrimestrielleService;
 import java.util.Date;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,47 +31,67 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
     private TauxTaxeSejourService tauxTaxeSejourService;
     @Autowired
     private LocalProxy localProxy;
+    @Autowired
+    private CategorieProxy categorieProxy;
 
     @Override
-    public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal) {
-        TaxeSejourTrimestrielle t = findByReference(taxesejourTrimestrielle.getReference());
+     @Override
+    public TaxeSejourTrimestrielle creertaxe(TaxeSejourTrimestrielle taxe) {
+       TaxeSejourTrimestrielle t = findByReference(taxe.getReference());
         if (t != null) {
-            System.out.println("-- version 1");
-            return -1;
+            return null;
         } else {
-            long nbMoisRetard = calculeNbrMoisRetard(taxesejourTrimestrielle);
-            taxesejourTrimestrielle.setNomberMoisRetard(nbMoisRetard);
-            long moisRetard = taxesejourTrimestrielle.getNomberMoisRetard();
-            // LocalVo localvo = new LocalVo();
-            // localvo.setReference(referenceLocal);
-            LocalVo localvo = localProxy.findByReference(taxesejourTrimestrielle.getReferenceLocal());
-            //localvo.setLebelle("Raid");
-            TauxTaxeSejour tauxTaxeSejour = tauxTaxeSejourService.findByCategorieRefCategorie(localvo.getRefCategorie());
-            Double montantBase = taxesejourTrimestrielle.getChiffreAffaire() * tauxTaxeSejour.getPourcentage() / 100;
-            taxesejourTrimestrielle.setMontantBase(montantBase);
-            System.out.println("-- version 2");
-            if (moisRetard == 0) {
-                taxesejourTrimestrielle.setMontantTaxe(montantBase);
-                taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
-                System.out.println("-- version 3");
-                return 1;
-            } else if (moisRetard == 1){
-                taxesejourTrimestrielle.setMontantMajoration(montantBase * 10 / 100);
-                    taxesejourTrimestrielle.setMontantTaxe(montantBase + taxesejourTrimestrielle.getMontantMajoration());
-                    taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
-                    System.out.println("-- version 4");
-                    return 2;
-                } else {
-                    taxesejourTrimestrielle.setMontantPenalite(montantBase * moisRetard * 5 / 100);
-                    taxesejourTrimestrielle.setMontantTaxe(montantBase + taxesejourTrimestrielle.getMontantMajoration() + taxesejourTrimestrielle.getMontantPenalite());
-                    taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
-                    System.out.println("-- version 5");
-                    return 3;
-                }
-
-            }
+            // chercher le pourcentage du tauxtrimestriel
+            LocalVo localvo = localProxy.findByReference(taxe.getReferenceLocal());
+            CategorieVo cat = localvo.getCategorieVo();
+            TauxTaxeSejour tauxTaxeSejour=tauxTaxeSejourService.findByCategorieReferenceAndDate(cat.getReference(), taxe.getDateDernierDelaiPaiment());
+            double pourcentage=tauxTaxeSejour.getPourcentage();
+          
+            taxe.setMontantDeBase(calculerMontantDeBase(pourcentage,surface));
+            taxeTrimesrielleDao.save(taxe);
+            return taxe;
         }
+    }
     
+//    public int creertaxe(TaxeSejourTrimestrielle taxesejourTrimestrielle, String referenceLocal) {
+//        TaxeSejourTrimestrielle t = findByReference(taxesejourTrimestrielle.getReference());
+//        if (t != null) {
+//            System.out.println("-- version 1");
+//            return -1;
+//        } else {
+//            long nbMoisRetard = calculeNbrMoisRetard(taxesejourTrimestrielle);
+//            taxesejourTrimestrielle.setNomberMoisRetard(nbMoisRetard);
+//            long moisRetard = taxesejourTrimestrielle.getNomberMoisRetard();
+//            // LocalVo localvo = new LocalVo();
+//            // localvo.setReference(referenceLocal);
+//            LocalVo localvo = localProxy.findByReference(taxesejourTrimestrielle.getReferenceLocal());
+//            //localvo.setLebelle("Raid");
+//            TauxTaxeSejour tauxTaxeSejour = tauxTaxeSejourService.findByRefCategorie(localvo.getRefCategorie());
+//            Double montantBase = taxesejourTrimestrielle.getChiffreAffaire() * tauxTaxeSejour.getPourcentage() / 100;
+//            taxesejourTrimestrielle.setMontantBase(montantBase);
+//            System.out.println("-- version 2");
+//            if (moisRetard == 0) {
+//                taxesejourTrimestrielle.setMontantTaxe(montantBase);
+//                taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
+//                System.out.println("-- version 3");
+//                return 1;
+//            } else if (moisRetard == 1){
+//                taxesejourTrimestrielle.setMontantMajoration(montantBase * 10 / 100);
+//                    taxesejourTrimestrielle.setMontantTaxe(montantBase + taxesejourTrimestrielle.getMontantMajoration());
+//                    taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
+//                    System.out.println("-- version 4");
+//                    return 2;
+//                } else {
+//                    taxesejourTrimestrielle.setMontantPenalite(montantBase * moisRetard * 5 / 100);
+//                    taxesejourTrimestrielle.setMontantTaxe(montantBase + taxesejourTrimestrielle.getMontantMajoration() + taxesejourTrimestrielle.getMontantPenalite());
+//                    taxeSejourTrimestrielleDao.save(taxesejourTrimestrielle);
+//                    System.out.println("-- version 5");
+//                    return 3;
+//                }
+//
+//            }
+//        }
+//    
 
     private long calculeNbrMoisRetard(TaxeSejourTrimestrielle taxesejourTrimestrielle) {
         long mois = 1000 * 60 * 60 * 24 * 30;           //un mois est contient combient de ms
@@ -113,6 +133,15 @@ public class TaxeSejourTrimestrielleServiceImpl implements TaxeSejourTrimestriel
 //    public List<TaxeSejourTrimestrielle> findByCriteria(Integer annee, Integer montantMin, Integer montantMax) {
 //        return taxeSejourTrimestrielleDao.findByCriteria(annee, montantMin, montantMax);
 //    }
+
+    public CategorieProxy getCategorieProxy() {
+        return categorieProxy;
+    }
+
+    public void setCategorieProxy(CategorieProxy categorieProxy) {
+        this.categorieProxy = categorieProxy;
+    }
+    
     
     
     public TaxeSejourTrimestrielleDao getTaxeSejourTrimestrielleDao() {

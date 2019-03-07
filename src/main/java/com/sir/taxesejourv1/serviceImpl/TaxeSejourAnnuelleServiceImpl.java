@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sir.taxesejourv1.service;
+package com.sir.taxesejourv1.serviceImpl;
 
-import com.sir.taxesejourv1.bean.TauxTaxeSejour;
+import com.sir.taxesejourv1.service.TaxeSejourAnnuelleService;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Jawadoo
  */
-
-public interface TauxTaxeSejourService {
-    public TauxTaxeSejour findByRefCategorie(String refCategorie);
-    public int saveTauxTaxeSejour(TauxTaxeSejour tauxTaxeSejour);
+@Service
+public class TaxeSejourAnnuelleServiceImpl implements TaxeSejourAnnuelleService {
+    
 }

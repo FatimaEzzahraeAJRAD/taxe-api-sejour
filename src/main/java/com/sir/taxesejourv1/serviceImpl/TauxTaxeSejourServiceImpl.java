@@ -22,8 +22,8 @@ public class TauxTaxeSejourServiceImpl implements TauxTaxeSejourService {
     private TauxTaxeSejourDao tauxTaxeSejourDao;
     
      @Override
-    public TauxTaxeSejour findByCategorieRefCategorie(String refCategorie) {
-        return  tauxTaxeSejourDao.findByCategorieRefCategorie(refCategorie);
+    public TauxTaxeSejour findByRefCategorie(String refCategorie) {
+        return  tauxTaxeSejourDao.findByRefCategorie(refCategorie);
     }
 
     @Override
